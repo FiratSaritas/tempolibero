@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Welcome to the official portfolio of TEMPO LIBERO, a DJ specializing in electronic, ambient, and experimental soundscapes. Listen to mixes and find booking info.">
+  
   <title>TEMPO LIBERO — DJ Portfolio</title>
   <link rel="icon" type="image/jpeg" href="favicon.ico">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -132,18 +137,21 @@
     
     .mix-title {
       font-weight: 600;
+      font-size: 1.2rem; /* Slightly larger */
       color: var(--dark-teal);
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem; /* Reduced margin */
       display: flex;
       align-items: center;
       justify-content: center;
     }
-
-    .mix-title::before {
-      content: "🎵";
-      margin-right: 8px;
+    
+    /* IMPROVEMENT: Styling for the mix info/tags */
+    .mix-info {
+      margin-bottom: 1.5rem;
+      color: var(--seafoam);
+      font-size: 0.9rem;
     }
-
+    
     /* --- NEW Simplified Audio Player Styles --- */
     .audio-player-container {
       margin-bottom: 2.5rem;
@@ -156,7 +164,7 @@
 
     .vinyl-wrapper {
       position: relative;
-      width: 150px; /* Increased size */
+      width: 150px;
       height: 150px;
       margin: 20px auto;
     }
@@ -169,14 +177,13 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       animation: spin 4s linear infinite;
       animation-play-state: paused;
-      /* The "border" now acts as the vinyl rim */
       border: 15px solid #1a1a1a; 
-      box-sizing: border-box; /* Important: keeps the border inside the size */
-      background-color: #333; /* Fallback color behind the image */
+      box-sizing: border-box;
+      background-color: #333;
     }
 
     .audio-player-container.playing .record {
-      animation-play-state: running; /* Runs when .playing class is added */
+      animation-play-state: running;
     }
 
     @keyframes spin {
@@ -188,7 +195,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%; /* Make image fill the entire container */
+      width: 100%;
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
@@ -202,11 +209,11 @@
       transform: translate(-50%, -50%);
       width: 50px;
       height: 50px;
-      background-color: rgba(245, 215, 123, 0.9); /* Yellow button */
+      background-color: rgba(245, 215, 123, 0.9);
       border: none;
       border-radius: 50%;
       cursor: pointer;
-      z-index: 2; /* Make sure it's on top */
+      z-index: 2;
       padding: 0;
       display: flex;
       align-items: center;
@@ -218,7 +225,6 @@
       background-color: var(--yellow);
     }
 
-    /* Play Icon (Triangle) */
     .play-pause-btn::before {
       content: '';
       display: block;
@@ -230,15 +236,35 @@
       transition: all 0.2s ease;
     }
     
-    /* Pause Icon */
     .audio-player-container.playing .play-pause-btn::before {
       border-style: double;
-      border-width: 0px 0px 0px 16px; /* Creates two vertical bars */
+      border-width: 0px 0px 0px 16px;
       height: 20px;
       margin: 0;
     }
-    /* --- End of New Styles --- */
 
+    /* --- ADDED: Gallery Styles --- */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 3px solid white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    /* --- End of Added Styles --- */
 
     a {
       color: var(--dark-teal);
@@ -268,26 +294,26 @@
     }
 
     ul { list-style-type: none; padding-left: 0; }
-    ul li { margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; }
-    ul li::before { content: "•"; position: absolute; left: 0; color: var(--yellow); font-size: 1.4rem; }
+    ul li { margin-bottom: 0.8rem; }
     
     footer { text-align: center; padding: 2rem 1rem; font-size: 0.9rem; color: #666; background-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); }
 
-    .gig-item { display: flex; align-items: center; margin-bottom: 0.8rem; padding: 8px 12px; background: rgba(255,255,255,0.5); border-radius: 8px; transition: transform 0.2s ease; }
+    .gig-item { display: flex; align-items: center; margin-bottom: 1rem; padding: 12px; background: rgba(255,255,255,0.5); border-radius: 8px; transition: transform 0.2s ease, background 0.2s ease; }
     .gig-item:hover { transform: translateX(5px); background: rgba(245, 215, 123, 0.2); }
-    .gig-icon { margin-right: 12px; font-size: 1.3rem; width: 30px; text-align: center; }
+    .gig-icon { margin-right: 15px; font-size: 1.5rem; color: var(--teal); width: 30px; text-align: center; }
 
-    .social-links { display: flex; gap: 15px; margin-top: 0.8rem; }
-    .social-btn { display: flex; align-items: center; padding: 8px 16px; background: var(--teal); color: white; border-radius: 30px; font-weight: 600; transition: all 0.3s ease; }
+    .social-links { display: flex; justify-content: center; gap: 15px; margin-top: 0.8rem; }
+    .social-btn { display: flex; align-items: center; padding: 10px 20px; background: var(--teal); color: white; border-radius: 30px; font-weight: 600; transition: all 0.3s ease; }
     .social-btn:hover { background: var(--dark-teal); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(72, 181, 161, 0.3); text-decoration: none; }
     .social-btn::after { display: none; }
-    .social-btn i { margin-right: 8px; }
+    .social-btn i { margin-right: 10px; font-size: 1.2rem; }
 
     @media (max-width: 600px) {
       header h1 { font-size: 2rem; }
       .container { padding: 1rem; }
       section { padding: 1.2rem; }
-      .social-links { flex-direction: column; }
+      .social-links { flex-direction: column; align-items: center; }
+      .photo-gallery { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
     }
   </style>
 </head>
@@ -304,9 +330,9 @@
       <h2>Follow Me</h2>
       <p>Connect with me on social media for the latest updates and mixes:</p>
       <div class="social-links">
-        <a href="https://www.instagram.com/_tempo.libero_/" target="_blank" class="social-btn"><i>📱</i> Instagram</a>
-        <a href="https://soundcloud.com/user-303450628" target="_blank" class="social-btn"><i>🎧</i> SoundCloud</a>
-        <a href="https://mixcloud.com/tempolibero" target="_blank" class="social-btn"><i>☁️</i> Mixcloud</a>
+        <a href="https://www.instagram.com/_tempo.libero_/" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        <a href="https://soundcloud.com/user-303450628" target="_blank" class="social-btn"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
+        <a href="https://www.mixcloud.com/tempolibero/" target="_blank" class="social-btn"><i class="fa-brands fa-mixcloud"></i> Mixcloud</a>
       </div>
     </section>
 
@@ -317,80 +343,110 @@
     </section>
 
     <section class="mixes">
-      <h2>Mixes</h2>
-      <p>Check out my latest mixes below:</p>
+      <h2>Featured Mixes</h2>
       
       <div class="audio-player-container">
         <div class="mix-title">Sunset Sessions Vol. 1</div>
-        <div class="mix-info">Deep House • Chillout • 120 BPM • 62 min</div>
+        <div class="mix-info">A journey through deep, melodic house to start the evening. • 62 min</div>
         <div class="vinyl-wrapper">
           <div class="record">
-            <img src="mix1.jpg" class="record-image" alt="Record Label">
+            <img src="mixes/mix1.jpg" class="record-image" alt="Artwork for Sunset Sessions Vol. 1">
           </div>
-          <button class="play-pause-btn" aria-label="Play/Pause"></button>
+          <button class="play-pause-btn" aria-label="Play Sunset Sessions Vol. 1"></button>
         </div>
-        <audio class="audio-track" src="mix.mp3"></audio>
+        <audio class="audio-track" src="mixes/mix1.mp3"></audio>
       </div>
 
       <div class="audio-player-container">
-        <div class="mix-title">Midnight Grooves</div>
-        <div class="mix-info">Deep House • Chillout • 120 BPM • 62 min</div>
+        <div class="mix-title">Techno Bloom</div>
+        <div class="mix-info">An energetic set of driving, atmospheric techno. • 75 min</div>
         <div class="vinyl-wrapper">
           <div class="record">
-            <img src="mix1.jpg" class="record-image" alt="Record Label">
+            <img src="mixes/mix2.jpg" class="record-image" alt="Artwork for Techno Bloom">
           </div>
-          <button class="play-pause-btn" aria-label="Play/Pause"></button>
+          <button class="play-pause-btn" aria-label="Play Techno Bloom"></button>
         </div>
-        <audio class="audio-track" src="mix.mp3"></audio>
+        <audio class="audio-track" src="mixes/mix2.mp3"></audio>
       </div>
+    </section>
+
+    <section class="gallery">
+      <h2>Gallery</h2>
+      <div class="photo-gallery">
+          <a href="gallery/image1.jpg" class="gallery-item"><img src="gallery/image1.jpg" alt="Crowd at Festival Libre"></a>
+          <a href="gallery/image2.jpg" class="gallery-item"><img src="gallery/image2.jpg" alt="Tempo Libero playing at a club"></a>
+          <a href="gallery/image3.jpg" class="gallery-item"><img src="gallery/image3.jpg" alt="DJ Decks close-up shot"></a>
+        </div>
     </section>
 
     <section class="gigs">
       <h2>Upcoming Gigs</h2>
       <ul>
-        <li class="gig-item"><div class="gig-icon">📍</div><div><strong>Club XYZ</strong> - June 15, 10PM-2AM<br><em>Underground techno night</em></div></li>
-        <li class="gig-item"><div class="gig-icon">🎧</div><div><strong>Festival Libre</strong> - July 26, 8PM-12AM<br><em>Main stage sunset set</em></div></li>
-        <li class="gig-item"><div class="gig-icon">🌊</div><div><strong>Home Beach Set</strong> - August 1, 4PM-8PM<br><em>Open air beach party</em></div></li>
+        <li class="gig-item">
+          <div class="gig-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div><strong>Club XYZ</strong> - June 15, 10PM-2AM<br><em>Underground techno night</em></div>
+        </li>
+        <li class="gig-item">
+          <div class="gig-icon"><i class="fa-solid fa-headphones-simple"></i></div>
+          <div><strong>Festival Libre</strong> - July 26, 8PM-12AM<br><em>Main stage sunset set</em></div>
+        </li>
+        <li class="gig-item">
+          <div class="gig-icon"><i class="fa-solid fa-sun"></i></div>
+          <div><strong>Home Beach Set</strong> - August 1, 4PM-8PM<br><em>Open air beach party</em></div>
+        </li>
       </ul>
     </section>
 
     <section class="contact">
       <h2>Contact / Bookings</h2>
-      <p>For bookings and inquiries, please contact me:</p>
-      <p>📱 DM via <a href="https://www.instagram.com/_tempo.libero_/" target="_blank">Instagram</a></p>
-      <p>✉️ Email: <a href="mailto:bookings@tempolibero.com">bookings@tempolibero.com</a></p>
+      <p>For bookings and inquiries, please get in touch:</p>
+      <p><i class="fa-brands fa-instagram" style="color: var(--dark-teal); margin-right: 8px;"></i> DM via <a href="https://www.instagram.com/_tempo.libero_/" target="_blank">Instagram</a></p>
+      <p><i class="fa-solid fa-envelope" style="color: var(--dark-teal); margin-right: 8px;"></i> Email: <a href="mailto:bookings@tempolibero.com">bookings@tempolibero.com</a></p>
     </section>
   </div>
 
   <footer>
-    © 2025 Tempo Libero. All rights reserved. Crafted with ❤️ and 🎶
+    © 2025 Tempo Libero. All rights reserved. Crafted with <i class="fa-solid fa-heart" style="color: #e25555;"></i> and <i class="fa-solid fa-music"></i>
   </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Find all audio player containers on the page
       const audioPlayers = document.querySelectorAll('.audio-player-container');
 
       audioPlayers.forEach(player => {
         const audio = player.querySelector('.audio-track');
         const playPauseBtn = player.querySelector('.play-pause-btn');
 
-        // Click event for the Play/Pause button
         playPauseBtn.addEventListener('click', () => {
           const isPlaying = player.classList.contains('playing');
 
+          // --- IMPROVEMENT: Stop all other players before playing a new one ---
+          if (!isPlaying) {
+            audioPlayers.forEach(otherPlayer => {
+              if (otherPlayer !== player) {
+                otherPlayer.querySelector('.audio-track').pause();
+                otherPlayer.classList.remove('playing');
+                // IMPROVEMENT: Update ARIA label for accessibility
+                otherPlayer.querySelector('.play-pause-btn').setAttribute('aria-label', `Play ${otherPlayer.querySelector('.mix-title').textContent}`);
+              }
+            });
+          }
+
+          // Toggle play/pause for the clicked player
           if (isPlaying) {
             audio.pause();
-            player.classList.remove('playing');
+            playPauseBtn.setAttribute('aria-label', `Play ${player.querySelector('.mix-title').textContent}`);
           } else {
             audio.play();
-            player.classList.add('playing');
+            playPauseBtn.setAttribute('aria-label', `Pause ${player.querySelector('.mix-title').textContent}`);
           }
+          player.classList.toggle('playing');
         });
 
         // When the track finishes, reset the state
         audio.addEventListener('ended', () => {
           player.classList.remove('playing');
+          playPauseBtn.setAttribute('aria-label', `Play ${player.querySelector('.mix-title').textContent}`);
         });
       });
     });
