@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TEMPO LIBERO — DJ Portfolio</title>
+  <link rel="icon" type="image/jpeg" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --beige: #f9f1d5;
+      --teal: #48b5a1;
+      --seafoam: #6ac0b5;
+      --yellow: #f5d77b;
+      --text: #333;
+      --dark-teal: #2a8e7c;
+      --pulse: #f5d77b80;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--beige);
+      color: var(--text);
+      background-image: radial-gradient(circle at 10% 20%, rgba(245, 215, 123, 0.1) 0%, rgba(249, 241, 213, 0) 20%),
+                        radial-gradient(circle at 90% 80%, rgba(106, 192, 181, 0.1) 0%, rgba(249, 241, 213, 0) 20%);
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, var(--pulse) 0%, transparent 70%);
+      opacity: 0.3;
+      z-index: -1;
+      animation: pulse 8s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.8); opacity: 0.2; }
+      100% { transform: scale(1.2); opacity: 0.4; }
+    }
+
+    header img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      border-radius: 50%;
+      border: 5px solid var(--teal);
+      box-shadow: 0 4px 15px rgba(72, 181, 161, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    header img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(72, 181, 161, 0.5);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--teal);
+      margin: 0.5rem 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      letter-spacing: 2px;
+    }
+
+    header p {
+      color: var(--seafoam);
+      font-size: 1.1rem;
+      margin-top: 0;
+      font-weight: 600;
+      max-width: 500px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 15px;
+      border-radius: 20px;
+      backdrop-filter: blur(2px);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--yellow);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: var(--teal);
+      border-bottom: 2px solid var(--yellow);
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding-bottom: 5px;
+    }
+
+    a {
+      color: var(--dark-teal);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    a::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--yellow);
+      transition: width 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--teal);
+    }
+
+    a:hover::after {
+      width: 100%;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--yellow);
+      font-size: 1.4rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(5px);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .audio-visualizer {
+      margin-bottom: 2.5rem;
+      background: rgba(255,255,255,0.7);
+      border-radius: 12px;
+      padding: 1.2rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .waveform {
+      display: flex;
+      align-items: flex-end;
+      height: 120px;
+      gap: 3px;
+      margin-top: 0.8rem;
+      background: rgba(0,0,0,0.03);
+      border-radius: 8px;
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    .bar {
+      flex: 1;
+      min-width: 4px;
+      background: linear-gradient(to top, var(--teal), var(--seafoam));
+      transition: height 0.15s ease-out;
+      border-radius: 3px 3px 0 0;
+    }
+
+    .mix-title {
+      font-weight: 600;
+      color: var(--dark-teal);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .mix-title::before {
+      content: "🎵";
+      margin-right: 8px;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 0.8rem;
+      border-radius: 30px;
+      outline: none;
+    }
+
+    audio::-webkit-media-controls-panel {
+      background: var(--beige);
+      border-radius: 30px;
+    }
+
+    .gig-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 8px;
+      transition: transform 0.2s ease;
+    }
+
+    .gig-item:hover {
+      transform: translateX(5px);
+      background: rgba(245, 215, 123, 0.2);
+    }
+
+    .gig-icon {
+      margin-right: 12px;
+      font-size: 1.3rem;
+      width: 30px;
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 0.8rem;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      background: var(--teal);
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .social-btn:hover {
+      background: var(--dark-teal);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(72, 181, 161, 0.3);
+      text-decoration: none;
+    }
+
+    .social-btn::after {
+      display: none;
+    }
+
+    .social-btn i {
+      margin-right: 8px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 1rem;
+      }
+      
+      section {
+        padding: 1.2rem;
+      }
+      
+      .waveform {
+        height: 80px;
+      }
+      
+      .social-links {
+        flex-direction: column;
+      }
+    }
+
+    /* Vinyl record animation */
+    .vinyl {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+    }
+
+    .record {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(45deg, #333 0%, #000 100%);
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      animation: spin 10s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .record-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      background: var(--yellow);
+      border-radius: 50%;
+      border: 2px solid white;
+      z-index: 2;
+    }
+
+    .record-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      background: var(--teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .audio-visualizer.playing .record {
+      animation-play-state: running;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.jpg" alt="Tempo Libero Logo" />
+    <h1>TEMPO LIBERO</h1>
+    <p>Curating vibes. DJ sets. Electronic journeys.</p>
+  </header>
+
+  <div class="container">
+
+    <section class="social">
+      <h2>Follow Me</h2>
+      <p>Connect with me on social media for the latest updates and mixes:</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/_tempo.libero_/" target="_blank" class="social-btn">
+          <i>📱</i> Instagram
+        </a>
+        <a href="https://soundcloud.com/user-303450628" target="_blank" class="social-btn">
+          <i>🎧</i> SoundCloud
+        </a>
+        <a href="https://mixcloud.com/tempolibero" target="_blank" class="social-btn">
+          <i>☁️</i> Mixcloud
+        </a>
+      </div>
+    </section>
+
+    <section class="bio">
+      <h2>About</h2>
+      <p>Tempo Libero is a DJ blending electronic, ambient, and experimental sounds into unforgettable sets. Based in LB City, spinning at underground clubs and festivals.</p>
+      <p>With a passion for creating immersive auditory experiences, Tempo Libero takes listeners on a journey through soundscapes that range from deep melodic techno to atmospheric downtempo.</p>
+    </section>
+
+    <section class="mixes">
+      <h2>Mixes</h2>
+      <p>Check out my latest mixes below. Press play to experience the visualizer!</p>
+
+      <div class="audio-visualizer">
+        <div class="mix-title">Sunset Sessions Vol. 1</div>
+        <audio controls class="audio-player" src="mix.mp3"></audio>
+      </div>
+
+      <div class="audio-visualizer">
+        <div class="mix-title">Midnight Grooves</div>
+        <audio controls class="audio-player" src="mix.mp3"></audio>
+      </div>
+    </section>
+
+    <section class="gigs">
+      <h2>Upcoming Gigs</h2>
+      <ul>
+        <li class="gig-item">
+          <div class="gig-icon">📍</div>
+          <div>
+            <strong>Club XYZ</strong> - June 15, 10PM-2AM<br>
+            <em>Underground techno night</em>
+          </div>
+        </li>
+        <li class="gig-item">
+          <div class="gig-icon">🎧</div>
+          <div>
+            <strong>Festival Libre</strong> - July 20, 8PM-12AM<br>
+            <em>Main stage sunset set</em>
+          </div>
+        </li>
+        <li class="gig-item">
+          <div class="gig-icon">🌊</div>
+          <div>
+            <strong>Beach Set</strong> - August 3, 4PM-8PM<br>
+            <em>Open air beach party</em>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="contact">
+      <h2>Contact / Bookings</h2>
+      <p>For bookings and inquiries, please contact me:</p>
+      <p>📱 DM via <a href="https://www.instagram.com/_tempo.libero_/" target="_blank">Instagram</a></p>
+      <p>✉️ Email: <a href="mailto:bookings@tempolibero.com">bookings@tempolibero.com</a></p>
+    </section>
+
+  </div>
+
+  <footer>
+    © 2025 Tempo Libero. All rights reserved. Crafted with ❤️ and 🎶
+  </footer>
+
+  
+
+</body>
+</html>
