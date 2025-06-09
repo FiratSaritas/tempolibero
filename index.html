@@ -129,6 +129,116 @@
       margin-bottom: 1.5rem;
       padding-bottom: 5px;
     }
+    
+    .mix-title {
+      font-weight: 600;
+      color: var(--dark-teal);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mix-title::before {
+      content: "🎵";
+      margin-right: 8px;
+    }
+
+    /* --- NEW Simplified Audio Player Styles --- */
+    .audio-player-container {
+      margin-bottom: 2.5rem;
+      background: rgba(255,255,255,0.7);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .vinyl-wrapper {
+      position: relative;
+      width: 150px; /* Increased size */
+      height: 150px;
+      margin: 20px auto;
+    }
+
+    .record {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: spin 4s linear infinite;
+      animation-play-state: paused;
+      /* The "border" now acts as the vinyl rim */
+      border: 15px solid #1a1a1a; 
+      box-sizing: border-box; /* Important: keeps the border inside the size */
+      background-color: #333; /* Fallback color behind the image */
+    }
+
+    .audio-player-container.playing .record {
+      animation-play-state: running; /* Runs when .playing class is added */
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .record-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%; /* Make image fill the entire container */
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .play-pause-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background-color: rgba(245, 215, 123, 0.9); /* Yellow button */
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2; /* Make sure it's on top */
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .play-pause-btn:hover {
+      background-color: var(--yellow);
+    }
+
+    /* Play Icon (Triangle) */
+    .play-pause-btn::before {
+      content: '';
+      display: block;
+      box-sizing: border-box;
+      border-style: solid;
+      border-width: 10px 0 10px 18px;
+      border-color: transparent transparent transparent white;
+      margin-left: 3px;
+      transition: all 0.2s ease;
+    }
+    
+    /* Pause Icon */
+    .audio-player-container.playing .play-pause-btn::before {
+      border-style: double;
+      border-width: 0px 0px 0px 16px; /* Creates two vertical bars */
+      height: 20px;
+      margin: 0;
+    }
+    /* --- End of New Styles --- */
+
 
     a {
       color: var(--dark-teal);
@@ -136,6 +246,10 @@
       font-weight: 600;
       position: relative;
       transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--teal);
     }
 
     a::after {
@@ -148,232 +262,32 @@
       background: var(--yellow);
       transition: width 0.3s ease;
     }
-
-    a:hover {
-      color: var(--teal);
-    }
-
+    
     a:hover::after {
       width: 100%;
     }
 
-    ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
+    ul { list-style-type: none; padding-left: 0; }
+    ul li { margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; }
+    ul li::before { content: "•"; position: absolute; left: 0; color: var(--yellow); font-size: 1.4rem; }
+    
+    footer { text-align: center; padding: 2rem 1rem; font-size: 0.9rem; color: #666; background-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); }
 
-    ul li {
-      margin-bottom: 0.8rem;
-      padding-left: 1.5rem;
-      position: relative;
-    }
+    .gig-item { display: flex; align-items: center; margin-bottom: 0.8rem; padding: 8px 12px; background: rgba(255,255,255,0.5); border-radius: 8px; transition: transform 0.2s ease; }
+    .gig-item:hover { transform: translateX(5px); background: rgba(245, 215, 123, 0.2); }
+    .gig-icon { margin-right: 12px; font-size: 1.3rem; width: 30px; text-align: center; }
 
-    ul li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--yellow);
-      font-size: 1.4rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #666;
-      background-color: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(5px);
-      margin-top: 2rem;
-      border-top: 1px solid rgba(0,0,0,0.05);
-    }
-
-    .audio-visualizer {
-      margin-bottom: 2.5rem;
-      background: rgba(255,255,255,0.7);
-      border-radius: 12px;
-      padding: 1.2rem;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    }
-
-    .waveform {
-      display: flex;
-      align-items: flex-end;
-      height: 120px;
-      gap: 3px;
-      margin-top: 0.8rem;
-      background: rgba(0,0,0,0.03);
-      border-radius: 8px;
-      overflow: hidden;
-      padding: 10px;
-    }
-
-    .bar {
-      flex: 1;
-      min-width: 4px;
-      background: linear-gradient(to top, var(--teal), var(--seafoam));
-      transition: height 0.15s ease-out;
-      border-radius: 3px 3px 0 0;
-    }
-
-    .mix-title {
-      font-weight: 600;
-      color: var(--dark-teal);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .mix-title::before {
-      content: "🎵";
-      margin-right: 8px;
-    }
-
-    audio {
-      width: 100%;
-      margin-top: 0.8rem;
-      border-radius: 30px;
-      outline: none;
-    }
-
-    audio::-webkit-media-controls-panel {
-      background: var(--beige);
-      border-radius: 30px;
-    }
-
-    .gig-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.8rem;
-      padding: 8px 12px;
-      background: rgba(255,255,255,0.5);
-      border-radius: 8px;
-      transition: transform 0.2s ease;
-    }
-
-    .gig-item:hover {
-      transform: translateX(5px);
-      background: rgba(245, 215, 123, 0.2);
-    }
-
-    .gig-icon {
-      margin-right: 12px;
-      font-size: 1.3rem;
-      width: 30px;
-      text-align: center;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 0.8rem;
-    }
-
-    .social-btn {
-      display: flex;
-      align-items: center;
-      padding: 8px 16px;
-      background: var(--teal);
-      color: white;
-      border-radius: 30px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .social-btn:hover {
-      background: var(--dark-teal);
-      transform: translateY(-3px);
-      box-shadow: 0 4px 10px rgba(72, 181, 161, 0.3);
-      text-decoration: none;
-    }
-
-    .social-btn::after {
-      display: none;
-    }
-
-    .social-btn i {
-      margin-right: 8px;
-    }
+    .social-links { display: flex; gap: 15px; margin-top: 0.8rem; }
+    .social-btn { display: flex; align-items: center; padding: 8px 16px; background: var(--teal); color: white; border-radius: 30px; font-weight: 600; transition: all 0.3s ease; }
+    .social-btn:hover { background: var(--dark-teal); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(72, 181, 161, 0.3); text-decoration: none; }
+    .social-btn::after { display: none; }
+    .social-btn i { margin-right: 8px; }
 
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      
-      .container {
-        padding: 1rem;
-      }
-      
-      section {
-        padding: 1.2rem;
-      }
-      
-      .waveform {
-        height: 80px;
-      }
-      
-      .social-links {
-        flex-direction: column;
-      }
-    }
-
-    /* Vinyl record animation */
-    .vinyl {
-      position: relative;
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 20px;
-    }
-
-    .record {
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(45deg, #333 0%, #000 100%);
-      border-radius: 50%;
-      position: relative;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      animation: spin 10s linear infinite;
-      animation-play-state: paused;
-    }
-
-    .record-center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 20px;
-      height: 20px;
-      background: var(--yellow);
-      border-radius: 50%;
-      border: 2px solid white;
-      z-index: 2;
-    }
-
-    .record-label {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
-      background: var(--teal);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 10px;
-      font-weight: bold;
-      text-align: center;
-      z-index: 1;
-    }
-
-    .audio-visualizer.playing .record {
-      animation-play-state: running;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      header h1 { font-size: 2rem; }
+      .container { padding: 1rem; }
+      section { padding: 1.2rem; }
+      .social-links { flex-direction: column; }
     }
   </style>
 </head>
@@ -386,20 +300,13 @@
   </header>
 
   <div class="container">
-
     <section class="social">
       <h2>Follow Me</h2>
       <p>Connect with me on social media for the latest updates and mixes:</p>
       <div class="social-links">
-        <a href="https://www.instagram.com/_tempo.libero_/" target="_blank" class="social-btn">
-          <i>📱</i> Instagram
-        </a>
-        <a href="https://soundcloud.com/user-303450628" target="_blank" class="social-btn">
-          <i>🎧</i> SoundCloud
-        </a>
-        <a href="https://mixcloud.com/tempolibero" target="_blank" class="social-btn">
-          <i>☁️</i> Mixcloud
-        </a>
+        <a href="https://www.instagram.com/_tempo.libero_/" target="_blank" class="social-btn"><i>📱</i> Instagram</a>
+        <a href="https://soundcloud.com/user-303450628" target="_blank" class="social-btn"><i>🎧</i> SoundCloud</a>
+        <a href="https://mixcloud.com/tempolibero" target="_blank" class="social-btn"><i>☁️</i> Mixcloud</a>
       </div>
     </section>
 
@@ -411,43 +318,39 @@
 
     <section class="mixes">
       <h2>Mixes</h2>
-      <p>Check out my latest mixes below. Press play to experience the visualizer!</p>
-
-      <div class="audio-visualizer">
+      <p>Check out my latest mixes below:</p>
+      
+      <div class="audio-player-container">
         <div class="mix-title">Sunset Sessions Vol. 1</div>
-        <audio controls class="audio-player" src="mix.mp3"></audio>
+        <div class="mix-info">Deep House • Chillout • 120 BPM • 62 min</div>
+        <div class="vinyl-wrapper">
+          <div class="record">
+            <img src="mix1.jpg" class="record-image" alt="Record Label">
+          </div>
+          <button class="play-pause-btn" aria-label="Play/Pause"></button>
+        </div>
+        <audio class="audio-track" src="mix.mp3"></audio>
       </div>
 
-      <div class="audio-visualizer">
+      <div class="audio-player-container">
         <div class="mix-title">Midnight Grooves</div>
-        <audio controls class="audio-player" src="mix.mp3"></audio>
+        <div class="mix-info">Deep House • Chillout • 120 BPM • 62 min</div>
+        <div class="vinyl-wrapper">
+          <div class="record">
+            <img src="mix1.jpg" class="record-image" alt="Record Label">
+          </div>
+          <button class="play-pause-btn" aria-label="Play/Pause"></button>
+        </div>
+        <audio class="audio-track" src="mix.mp3"></audio>
       </div>
     </section>
 
     <section class="gigs">
       <h2>Upcoming Gigs</h2>
       <ul>
-        <li class="gig-item">
-          <div class="gig-icon">📍</div>
-          <div>
-            <strong>Club XYZ</strong> - June 15, 10PM-2AM<br>
-            <em>Underground techno night</em>
-          </div>
-        </li>
-        <li class="gig-item">
-          <div class="gig-icon">🎧</div>
-          <div>
-            <strong>Festival Libre</strong> - July 20, 8PM-12AM<br>
-            <em>Main stage sunset set</em>
-          </div>
-        </li>
-        <li class="gig-item">
-          <div class="gig-icon">🌊</div>
-          <div>
-            <strong>Beach Set</strong> - August 3, 4PM-8PM<br>
-            <em>Open air beach party</em>
-          </div>
-        </li>
+        <li class="gig-item"><div class="gig-icon">📍</div><div><strong>Club XYZ</strong> - June 15, 10PM-2AM<br><em>Underground techno night</em></div></li>
+        <li class="gig-item"><div class="gig-icon">🎧</div><div><strong>Festival Libre</strong> - July 26, 8PM-12AM<br><em>Main stage sunset set</em></div></li>
+        <li class="gig-item"><div class="gig-icon">🌊</div><div><strong>Home Beach Set</strong> - August 1, 4PM-8PM<br><em>Open air beach party</em></div></li>
       </ul>
     </section>
 
@@ -457,14 +360,41 @@
       <p>📱 DM via <a href="https://www.instagram.com/_tempo.libero_/" target="_blank">Instagram</a></p>
       <p>✉️ Email: <a href="mailto:bookings@tempolibero.com">bookings@tempolibero.com</a></p>
     </section>
-
   </div>
 
   <footer>
     © 2025 Tempo Libero. All rights reserved. Crafted with ❤️ and 🎶
   </footer>
 
-  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Find all audio player containers on the page
+      const audioPlayers = document.querySelectorAll('.audio-player-container');
+
+      audioPlayers.forEach(player => {
+        const audio = player.querySelector('.audio-track');
+        const playPauseBtn = player.querySelector('.play-pause-btn');
+
+        // Click event for the Play/Pause button
+        playPauseBtn.addEventListener('click', () => {
+          const isPlaying = player.classList.contains('playing');
+
+          if (isPlaying) {
+            audio.pause();
+            player.classList.remove('playing');
+          } else {
+            audio.play();
+            player.classList.add('playing');
+          }
+        });
+
+        // When the track finishes, reset the state
+        audio.addEventListener('ended', () => {
+          player.classList.remove('playing');
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
