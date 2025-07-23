@@ -1,109 +1,456 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Libertasio.com - Global News & Insights</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4994230386451018"
-     crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Welcome to the official portfolio of TEMPO LIBERO, a DJ specializing in electronic, ambient, and experimental soundscapes. Listen to mixes and find booking info.">
+  
+  <title>TEMPO LIBERO — DJ Portfolio</title>
+  <link rel="icon" type="image/jpeg" href="favicon.ico">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --beige: #f9f1d5;
+      --teal: #48b5a1;
+      --seafoam: #6ac0b5;
+      --yellow: #f5d77b;
+      --text: #333;
+      --dark-teal: #2a8e7c;
+      --pulse: #f5d77b80;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--beige);
+      color: var(--text);
+      background-image: radial-gradient(circle at 10% 20%, rgba(245, 215, 123, 0.1) 0%, rgba(249, 241, 213, 0) 20%),
+                        radial-gradient(circle at 90% 80%, rgba(106, 192, 181, 0.1) 0%, rgba(249, 241, 213, 0) 20%);
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, var(--pulse) 0%, transparent 70%);
+      opacity: 0.3;
+      z-index: -1;
+      animation: pulse 8s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.8); opacity: 0.2; }
+      100% { transform: scale(1.2); opacity: 0.4; }
+    }
+
+    header img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      border-radius: 50%;
+      border: 5px solid var(--teal);
+      box-shadow: 0 4px 15px rgba(72, 181, 161, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    header img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(72, 181, 161, 0.5);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--teal);
+      margin: 0.5rem 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      letter-spacing: 2px;
+    }
+
+    header p {
+      color: var(--seafoam);
+      font-size: 1.1rem;
+      margin-top: 0;
+      font-weight: 600;
+      max-width: 500px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 15px;
+      border-radius: 20px;
+      backdrop-filter: blur(2px);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--yellow);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: var(--teal);
+      border-bottom: 2px solid var(--yellow);
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding-bottom: 5px;
+    }
+    
+    .mix-title {
+      font-weight: 600;
+      font-size: 1.2rem; /* Slightly larger */
+      color: var(--dark-teal);
+      margin-bottom: 0.5rem; /* Reduced margin */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* IMPROVEMENT: Styling for the mix info/tags */
+    .mix-info {
+      margin-bottom: 1.5rem;
+      color: var(--seafoam);
+      font-size: 0.9rem;
+    }
+    
+    /* --- NEW Simplified Audio Player Styles --- */
+    .audio-player-container {
+      margin-bottom: 2.5rem;
+      background: rgba(255,255,255,0.7);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .vinyl-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 20px auto;
+    }
+
+    .record {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: spin 4s linear infinite;
+      animation-play-state: paused;
+      border: 15px solid #1a1a1a; 
+      box-sizing: border-box;
+      background-color: #333;
+    }
+
+    .audio-player-container.playing .record {
+      animation-play-state: running;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .record-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .play-pause-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background-color: rgba(245, 215, 123, 0.9);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .play-pause-btn:hover {
+      background-color: var(--yellow);
+    }
+
+    .play-pause-btn::before {
+      content: '';
+      display: block;
+      box-sizing: border-box;
+      border-style: solid;
+      border-width: 10px 0 10px 18px;
+      border-color: transparent transparent transparent white;
+      margin-left: 3px;
+      transition: all 0.2s ease;
+    }
+    
+    .audio-player-container.playing .play-pause-btn::before {
+      border-style: double;
+      border-width: 0px 0px 0px 16px;
+      height: 20px;
+      margin: 0;
+    }
+
+    /* --- ADDED: Gallery Styles --- */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 3px solid white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    /* --- End of Added Styles --- */
+
+    a {
+      color: var(--dark-teal);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--teal);
+    }
+
+    a::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--yellow);
+      transition: width 0.3s ease;
+    }
+    
+    a:hover::after {
+      width: 100%;
+    }
+
+    ul { list-style-type: none; padding-left: 0; }
+    ul li { margin-bottom: 0.8rem; }
+    
+    footer { text-align: center; padding: 2rem 1rem; font-size: 0.9rem; color: #666; background-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); }
+
+    .gig-item { display: flex; align-items: center; margin-bottom: 1rem; padding: 12px; background: rgba(255,255,255,0.5); border-radius: 8px; transition: transform 0.2s ease, background 0.2s ease; }
+    .gig-item:hover { transform: translateX(5px); background: rgba(245, 215, 123, 0.2); }
+    .gig-icon { margin-right: 15px; font-size: 1.5rem; color: var(--teal); width: 30px; text-align: center; }
+
+    .social-links { display: flex; justify-content: center; gap: 15px; margin-top: 0.8rem; }
+    .social-btn { display: flex; align-items: center; padding: 10px 20px; background: var(--teal); color: white; border-radius: 30px; font-weight: 600; transition: all 0.3s ease; }
+    .social-btn:hover { background: var(--dark-teal); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(72, 181, 161, 0.3); text-decoration: none; }
+    .social-btn::after { display: none; }
+    .social-btn i { margin-right: 10px; font-size: 1.2rem; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .container { padding: 1rem; }
+      section { padding: 1.2rem; }
+      .social-links { flex-direction: column; align-items: center; }
+      .photo-gallery { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+    }
+  </style>
 </head>
-<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white text-sm md:text-base p-4 md:p-6 flex flex-col md:flex-row justify-between items-center z-50 shadow-lg">
-  <p class="mb-2 md:mb-0">
-    We use cookies to ensure you get the best experience on our website. 
-    <a href="privacy.html" class="underline text-primary-medium hover:text-accent-light ml-1">Learn more</a>
-  </p>
-  <button id="accept-cookies" class="bg-primary-medium hover:bg-primary-dark text-white font-semibold py-2 px-4 rounded transition">
-    Accept
-  </button>
-</div>
-<body class="font-inter bg-gray-100 text-gray-900">
-    <header class="bg-primary-dark text-white shadow-lg py-2 relative overflow-hidden">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center z-10 relative">
-            
-            <div class="flex items-end mb-4 md:mb-0">
-            <a href="index.html" class="flex items-end no-underline">
-                <img src="LogoN_transparent.png" alt="Libertasio L logo" class="h-16 w-auto mr-[-10px] z-0 relative">
+<body>
 
-                <span class="ml-1 text-[2.6rem] leading-none font-serif tracking-tight font-semibold hover:text-accent-light transition-colors duration-300 mb-[-6px]">
-                ibertasio.com
-                </span>
-            </a>
-            </div>
+  <header>
+    <img src="logo.jpg" alt="Tempo Libero Logo" />
+    <h1>TEMPO LIBERO</h1>
+    <p>Curating vibes. DJ sets. Electronic journeys.</p>
+  </header>
 
-            <nav>
-            <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 text-center pt-[20px]">
-                <li><a href="index.html" class="text-lg font-medium hover:text-accent-light transition-colors duration-300 relative group">Home<span class="absolute inset-x-0 bottom-0 h-0.5 bg-primary-medium transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span></a></li>
-                <li><a href="news.html" class="text-lg font-medium hover:text-accent-light transition-colors duration-300 relative group">News<span class="absolute inset-x-0 bottom-0 h-0.5 bg-primary-medium transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span></a></li>
-                <li><a href="about.html" class="text-lg font-medium hover:text-accent-light transition-colors duration-300 relative group">About Us<span class="absolute inset-x-0 bottom-0 h-0.5 bg-primary-medium transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span></a></li>
-                <li><a href="support.html" class="text-lg font-medium hover:text-accent-light transition-colors duration-300 relative group">Support<span class="absolute inset-x-0 bottom-0 h-0.5 bg-primary-medium transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span></a></li>
-            </ul>
-            </nav>
+  <div class="container">
+    <section class="social">
+      <h2>Follow Me</h2>
+      <p>Connect with me on social media for the latest updates and mixes:</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/_tempo.libero_/" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        <a href="https://soundcloud.com/user-303450628" target="_blank" class="social-btn"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
+        <a href="https://www.mixcloud.com/tempolibero/" target="_blank" class="social-btn"><i class="fa-brands fa-mixcloud"></i> Mixcloud</a>
+      </div>
+    </section>
+
+    <section class="bio">
+      <h2>About</h2>
+      <p>Tempo Libero is a DJ blending electronic, ambient, and experimental sounds into unforgettable sets. Based in LB City, spinning at underground clubs and festivals.</p>
+      <p>With a passion for creating immersive auditory experiences, Tempo Libero takes listeners on a journey through soundscapes that range from deep melodic techno to atmospheric downtempo.</p>
+    </section>
+
+    <section class="mixes">
+      <h2>Featured Mixes</h2>
+      
+      <div class="audio-player-container">
+        <div class="mix-title">Sunset Sessions Vol. 1</div>
+        <div class="mix-info">A journey through deep, melodic house to start the evening. • 62 min</div>
+        <div class="vinyl-wrapper">
+          <div class="record">
+            <img src="mixes/mix1.jpg" class="record-image" alt="Artwork for Sunset Sessions Vol. 1">
+          </div>
+          <button class="play-pause-btn" aria-label="Play Sunset Sessions Vol. 1"></button>
         </div>
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-medium to-blue-600 opacity-20 transform -skew-y-3 scale-110 z-0"></div>
-    </header>
+        <audio class="audio-track" src="mixes/mix1.mp3"></audio>
+      </div>
 
-    <main class="container mx-auto px-4 py-8">
-
-        <section class="flex flex-col lg:flex-row gap-8 mb-12">
-            <div id="featured-article-container" class="lg:w-2/3">
-                </div>
-
-            <div class="lg:w-1/3 bg-gray-800 text-white p-6 md:p-8 rounded-xl shadow-lg text-center relative overflow-hidden flex flex-col justify-center">
-                <div class="absolute inset-0 opacity-10 bg-no-repeat bg-center" style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M25 0L50 50L25 100L0 50Z\' fill=\'%23a0a0a0\' opacity=\'0.1\'/%3E%3Cpath d=\'M75 0L100 50L75 100L50 50Z\' fill=\'%23a0a0a0\' opacity=\'0.1\'/%3E%3C/svg%3E'); background-size: 80px;"></div>
-                <div class="relative z-10">
-                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-primary-medium">The Libertasio Ethos</h2>
-                    <p class="text-base md:text-lg font-light italic mb-6 leading-relaxed">
-                        "In a world of noise, we seek clarity. We believe in the power of unvarnished truth, the beauty of diverse perspectives, and the relentless pursuit of freedom in thought and expression. Libertasio.com is not just news; it's a commitment to informed liberty."
-                    </p>
-                    <a href="about.html" class="btn-primary-inverted inline-block text-base">Discover Our Mission</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-12">
-            <h2 class="text-4xl font-extrabold text-center text-primary-dark mb-10">Curated Perspectives</h2>
-            <div id="editors-picks-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                </div>
-        </section>
-        
-        <section class="mb-12">
-            <h2 class="text-4xl font-extrabold text-center text-primary-dark mb-10">Deep Dive: An Essential Read</h2>
-            <div id="deep-dive-container" class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col lg:flex-row transform hover:shadow-2xl transition-all duration-300 ease-in-out">
-                </div>
-        </section>
-
-        <section class="bg-accent-light text-white p-8 md:p-10 rounded-xl shadow-lg mb-12">
-            <blockquote id="dynamic-quote" class="text-2xl md:text-3xl font-semibold italic text-center leading-relaxed">
-                "The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion."
-            </blockquote>
-            <p id="dynamic-quote-source" class="text-lg text-right mt-4">- Albert Camus</p>
-        </section>
-
-        <section class="mb-12">
-            <h2 class="text-4xl font-extrabold text-center text-primary-dark mb-10">More Insights</h2>
-            <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-        </section>
-
-        <section class="text-center p-6 bg-white rounded-lg shadow-md mb-8">
-            <h3 class="text-3xl font-bold text-primary-dark mb-3">Who We Are</h3>
-            <p class="text-gray-700 text-lg mb-4 max-w-2xl mx-auto">
-                Libertasio.com is dedicated to providing critical, unbiased global news and analysis. We champion informed perspectives and foster a community committed to understanding the complexities of our world.
-            </p>
-            <a href="about.html" class="btn-primary inline-block">Our Story</a>
-        </section>
-
-    </main>
-
-    <footer class="bg-primary-dark text-white py-8 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-sm">© 2025 Libertasio.com. All rights reserved. Modern News, Simple Delivery.</p>
+      <div class="audio-player-container">
+        <div class="mix-title">Techno Bloom</div>
+        <div class="mix-info">An energetic set of driving, atmospheric techno. • 75 min</div>
+        <div class="vinyl-wrapper">
+          <div class="record">
+            <img src="mixes/mix2.jpg" class="record-image" alt="Artwork for Techno Bloom">
+          </div>
+          <button class="play-pause-btn" aria-label="Play Techno Bloom"></button>
         </div>
-    </footer>
+        <audio class="audio-track" src="mixes/mix2.mp3"></audio>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <section class="gallery">
+      <h2>Gallery</h2>
+      <div class="photo-gallery">
+          <a href="gallery/image1.jpg" class="gallery-item"><img src="gallery/image1.jpg" alt="Crowd at Festival Libre"></a>
+          <a href="gallery/image2.jpg" class="gallery-item"><img src="gallery/image2.jpg" alt="Tempo Libero playing at a club"></a>
+          <a href="gallery/image3.jpg" class="gallery-item"><img src="gallery/image3.jpg" alt="DJ Decks close-up shot"></a>
+        </div>
+    </section>
+
+    <section class="gigs">
+      <h2>Upcoming Gigs</h2>
+      <ul>
+        <li class="gig-item">
+          <div class="gig-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div><strong>Club XYZ</strong> - June 15, 10PM-2AM<br><em>Underground techno night</em></div>
+        </li>
+        <li class="gig-item">
+          <div class="gig-icon"><i class="fa-solid fa-headphones-simple"></i></div>
+          <div><strong>Festival Libre</strong> - July 26, 8PM-12AM<br><em>Main stage sunset set</em></div>
+        </li>
+        <li class="gig-item">
+          <div class="gig-icon"><i class="fa-solid fa-sun"></i></div>
+          <div><strong>Home Beach Set</strong> - August 1, 4PM-8PM<br><em>Open air beach party</em></div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="contact">
+      <h2>Contact / Bookings</h2>
+      <p>For bookings and inquiries, please get in touch:</p>
+      <p><i class="fa-brands fa-instagram" style="color: var(--dark-teal); margin-right: 8px;"></i> DM via <a href="https://www.instagram.com/_tempo.libero_/" target="_blank">Instagram</a></p>
+      <p><i class="fa-solid fa-envelope" style="color: var(--dark-teal); margin-right: 8px;"></i> Email: <a href="mailto:bookings@tempolibero.com">bookings@tempolibero.com</a></p>
+    </section>
+  </div>
+
+  <footer>
+    © 2025 Tempo Libero. All rights reserved. Crafted with <i class="fa-solid fa-heart" style="color: #e25555;"></i> and <i class="fa-solid fa-music"></i>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const audioPlayers = document.querySelectorAll('.audio-player-container');
+
+      audioPlayers.forEach(player => {
+        const audio = player.querySelector('.audio-track');
+        const playPauseBtn = player.querySelector('.play-pause-btn');
+
+        playPauseBtn.addEventListener('click', () => {
+          const isPlaying = player.classList.contains('playing');
+
+          // --- IMPROVEMENT: Stop all other players before playing a new one ---
+          if (!isPlaying) {
+            audioPlayers.forEach(otherPlayer => {
+              if (otherPlayer !== player) {
+                otherPlayer.querySelector('.audio-track').pause();
+                otherPlayer.classList.remove('playing');
+                // IMPROVEMENT: Update ARIA label for accessibility
+                otherPlayer.querySelector('.play-pause-btn').setAttribute('aria-label', `Play ${otherPlayer.querySelector('.mix-title').textContent}`);
+              }
+            });
+          }
+
+          // Toggle play/pause for the clicked player
+          if (isPlaying) {
+            audio.pause();
+            playPauseBtn.setAttribute('aria-label', `Play ${player.querySelector('.mix-title').textContent}`);
+          } else {
+            audio.play();
+            playPauseBtn.setAttribute('aria-label', `Pause ${player.querySelector('.mix-title').textContent}`);
+          }
+          player.classList.toggle('playing');
+        });
+
+        // When the track finishes, reset the state
+        audio.addEventListener('ended', () => {
+          player.classList.remove('playing');
+          playPauseBtn.setAttribute('aria-label', `Play ${player.querySelector('.mix-title').textContent}`);
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>
